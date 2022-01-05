@@ -40,9 +40,7 @@
             } else if(!nmRegex.test(nm)) {
                 alert('이름은 한글로 2~5글자가 되어야 합니다.');
                 e.preventDefault();
-            }
-
-            if(idChkState !== 1) {
+            } else if(idChkState !== 1) {
                 switch (idChkState) {
                     case 0:
                         alert('다른 아이디를 사용해 주세요!');
@@ -68,8 +66,7 @@
             if(idVal.length < 4) {
                 alert('아이디는 4자 이상 작성해 주세요.');
                 return;
-            }
-            if(!idRegex.test(idVal)) {
+            } else if(!idRegex.test(idVal)) {
                 alert(msg1);
                 return;
             }
