@@ -1,7 +1,10 @@
 {
+    let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
     const joinFrmElem = document.querySelector('#join-frm');
 
     const setIdChkMsg = (data) => {
+        idChkState = data.result; //0 or 1
+
         const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
         switch(data.result) {
             case 0:
@@ -14,6 +17,26 @@
     };
 
     if(joinFrmElem) {
+        joinFrmElem.addEventListener('submit', (e) => {
+            if(idChkState !== 1) {
+                switch (idChkState) {
+                    case 0:
+                        alert('다른 아이디를 사용해 주세요!');
+                        break;
+                    case 2:
+                        alert('아이디 중복 체크를 해주세요!');
+                        break;
+                }
+                e.preventDefault();
+            }
+        });
+
+        joinFrmElem.uid.addEventListener('keyup', () => {
+            const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
+            idChkMsgElem.innerText = '';
+            idChkState = 2;
+        });
+
         //아이디 중복 체크 버튼
         const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
         idBtnChkElem.addEventListener('click', () => {
