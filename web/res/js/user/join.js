@@ -6,7 +6,18 @@
         const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
         idBtnChkElem.addEventListener('click', () => {
             const idVal = joinFrmElem.uid.value;
-            alert(idVal);
+            if(idVal.length < 4) {
+                alert('아이디는 4자 이상 작성해 주세요.');
+                return;
+            }
+
+            fetch(`/user/idChk/${idVal}`)
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+            }).catch((e)=> {
+               console.log(e);
+            });
         });
     }
 }
