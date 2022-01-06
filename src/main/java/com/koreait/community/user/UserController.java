@@ -1,12 +1,10 @@
 package com.koreait.community.user;
 
+import com.koreait.community.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +21,13 @@ public class UserController {
 
     @GetMapping("/join")
     public void join() {}
+
+    @PostMapping("/join")
+    public String joinProc(UserEntity entity) {
+        //TODO - 회원가입 성공하면 로그인 처리
+        int result = service.join(entity);
+        return "/user/login";
+    }
 
     @GetMapping("/idChk/{uid}")
     @ResponseBody
