@@ -39,7 +39,7 @@ public class UserController {
             }
             return "redirect:/user/login";
         }
-        return "redirect:/board/list";
+        return "redirect:/board/list/1";
     }
 
     @GetMapping("/join")
@@ -54,7 +54,7 @@ public class UserController {
         }
         //회원가입 성공하면 로그인 처리
         service.login(entity);
-        return "redirect:/board/list";
+        return "redirect:/board/list/1";
     }
 
     @GetMapping("/idChk/{uid}")
