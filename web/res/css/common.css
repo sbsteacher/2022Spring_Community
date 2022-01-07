@@ -4,6 +4,7 @@ a { text-decoration: none; }
 html, body { height: 100%; }
 header { background-color: coral; }
 footer { background-color: #4d4d4d; }
+
 .flex-align-center { align-items: center; }
 .flex-center { justify-content: center; align-items: center; }
 .flex-container { display: flex; height: 100%; width: 100%; }

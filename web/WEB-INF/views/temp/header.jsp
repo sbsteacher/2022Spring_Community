@@ -14,7 +14,7 @@
             </c:otherwise>
         </c:choose>
         <c:forEach items="${menuList}" var="item">
-            <div class="m-r-20"><a href="#" class="font-color-white">${item}</a></div>
+            <div class="m-r-20"><a href="/board/list/${item.icategory}" class="font-color-white">${item.nm}</a></div>
         </c:forEach>
     </div>
 </header>
