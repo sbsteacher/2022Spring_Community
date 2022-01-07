@@ -25,6 +25,7 @@ public class UserController {
     public String loginProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.login(entity);
         if(result != 1) {
+            reAttr.addFlashAttribute(Const.TRY_LOGIN, entity);
             switch(result) {
                 case 0:
                     reAttr.addFlashAttribute(Const.MSG, Const.ERR_1);
@@ -46,19 +47,20 @@ public class UserController {
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity) {
-        //TODO - 회원가입 성공하면 로그인 처리
         int result = service.join(entity);
-        return "/user/login";
+        if(result == 0) {
+            return "redirect:/user/join";
+        }
+        //회원가입 성공하면 로그인 처리
+        service.login(entity);
+        return "redirect:/board/list";
     }
 
     @GetMapping("/idChk/{uid}")
     @ResponseBody
     public Map<String, Integer> idChk(@PathVariable String uid) {
-        System.out.println("uid : " + uid);
-
         Map<String, Integer> res = new HashMap();
         res.put("result", service.idChk(uid));
-
         return res;
     }
 }

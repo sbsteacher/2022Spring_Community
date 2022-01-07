@@ -4,7 +4,7 @@
 <h1>로그인</h1>
 <div>${requestScope.msg}</div>
 <form action="/user/login" method="post" id="login-frm">
-    <div><label>id : <input type="text" name="uid"></label></div>
+    <div><label>id : <input type="text" name="uid" value="${requestScope.tryLogin.uid}"></label></div>
     <div><label>password : <input type="password" name="upw"></label></div>
     <div>
         <input type="submit" value="LOGIN">
