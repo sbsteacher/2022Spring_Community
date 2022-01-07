@@ -1,11 +1,13 @@
 * { box-sizing: border-box; padding: 0; margin: 0; }
 a { text-decoration: none; }
 
+html, body { height: 100%; }
 header { background-color: coral; }
-
-
+footer { background-color: #4d4d4d; }
 .flex-align-center { align-items: center; }
+.flex-center { justify-content: center; align-items: center; }
 .flex-container { display: flex; height: 100%; width: 100%; }
+.flex-direction-column { flex-direction: column; }
 
 .font-color-white { color: #fff; }
 
@@ -17,3 +19,5 @@ header { background-color: coral; }
 
 .p-lr-10 { padding: 0 10px; }
 .p-lr-20 { padding: 0 20px; }
+
+#container { min-height: 100%; display: grid; grid-template-rows: 50px 1fr 30px; }
