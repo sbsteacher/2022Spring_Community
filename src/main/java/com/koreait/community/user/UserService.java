@@ -2,7 +2,7 @@ package com.koreait.community.user;
 
 import com.koreait.community.UserUtils;
 import com.koreait.community.model.UserEntity;
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,17 +37,13 @@ public class UserService {
         return 1; //로그인 성공!
     }
 
-    public int join(UserEntity entity) {
-        UserEntity copyEntity = null;
-        try {
-            copyEntity = (UserEntity) BeanUtils.cloneBean(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public int join(UserEntity entity) { //uid, upw, nm, gender
+        UserEntity copyEntity = new UserEntity();
+        BeanUtils.copyProperties(entity, copyEntity);
 
         //비밀번호 암호화
-        String hashPw = BCrypt.hashpw(copyEntity.getUpw(), BCrypt.gensalt());
-        copyEntity.setUpw(hashPw);
+        String hashedPw = BCrypt.hashpw(copyEntity.getUpw(), BCrypt.gensalt());
+        copyEntity.setUpw(hashedPw);
         return mapper.insUser(copyEntity);
     }
 

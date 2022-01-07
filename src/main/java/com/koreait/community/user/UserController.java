@@ -46,9 +46,10 @@ public class UserController {
     public void join() {}
 
     @PostMapping("/join")
-    public String joinProc(UserEntity entity) {
+    public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.join(entity);
         if(result == 0) {
+            reAttr.addFlashAttribute(Const.MSG, Const.ERR_4);
             return "redirect:/user/join";
         }
         //회원가입 성공하면 로그인 처리
