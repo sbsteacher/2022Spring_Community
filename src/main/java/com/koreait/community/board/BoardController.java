@@ -34,4 +34,6 @@ public class BoardController {
         int result = service.insBoard(entity);
         return "redirect:/board/list/" + entity.getIcategory();
     }
+
+    
 }
