@@ -32,5 +32,8 @@ CREATE TABLE t_board(
     hits INT UNSIGNED DEFAULT 0,
     isdel TINYINT UNSIGNED DEFAULT 0,
     rdt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    mdt DATETIME DEFAULT current_timestamp
+    mdt DATETIME DEFAULT current_timestamp,
+    lastip varchar(15)
 );
+
+ALTER TABLE t_board ADD COLUMN lastip VARCHAR(15);

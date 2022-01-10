@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BoardService {
@@ -26,7 +27,15 @@ public class BoardService {
     public List<BoardVo> selBoardList(BoardDto dto) {
         return mapper.selBoardList(dto);
     }
-    public BoardVo selBoard(BoardDto dto) {
-        return mapper.selBoard(dto);
+    public BoardVo selBoard(BoardDto dto) { //iboard, lastip
+        BoardVo detail = mapper.selBoard(dto);
+        if(!Objects.equals(dto.getLastip(), detail.getLastip())) {
+            int hitsResult = mapper.addHits(dto);
+            if(hitsResult == 1) {
+                detail.setHits(detail.getHits() + 1);
+            }
+            mapper.updBoard(dto);
+        }
+        return detail;
     }
 }

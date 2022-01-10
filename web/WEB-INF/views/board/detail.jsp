@@ -7,7 +7,7 @@
     </div>
 </c:if>
 <div>
-    <div>${data.categorynm}</div>
+    <div>카테고리: ${data.categorynm}</div>
     <div>조회수: ${data.hits} | 등록일시: ${data.rdt}</div>
     <div>글쓴이: ${data.writernm}</div>
     <div>제목: <c:out value="${data.title}" /></div>

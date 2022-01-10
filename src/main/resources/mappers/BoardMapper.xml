@@ -20,7 +20,7 @@
     </select>
 
     <select id="selBoard" resultType="BoardVo">
-        SELECT A.iboard, A.title, A.ctnt, A.iuser, A.hits, A.rdt
+        SELECT A.iboard, A.title, A.ctnt, A.iuser, A.hits, A.rdt, A.lastip
              , B.nm as writernm, B.profileimg
              , C.nm as categorynm
         FROM t_board A
@@ -29,6 +29,28 @@
         LEFT JOIN t_board_category C
         ON A.icategory = C.icategory
         WHERE A.isdel = 0
-        AND iboard = ${iboard}
+        AND A.iboard = ${iboard}
     </select>
+
+    <update id="addHits">
+        UPDATE t_board
+        SET hits = hits + 1
+        WHERE iboard = ${iboard}
+    </update>
+
+    <update id="updBoard">
+        UPDATE t_board
+        <set>
+            <if test=" title != null and title != '' ">
+                title = #{title},
+            </if>
+            <if test=" ctnt != null and ctnt != '' ">
+                ctnt = #{ctnt},
+            </if>
+            <if test=" lastip != null and lastip != '' ">
+                lastip = #{lastip}
+            </if>
+        </set>
+        WHERE iboard = ${iboard}
+    </update>
 </mapper>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -36,7 +38,13 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public void detail(BoardDto dto, Model model) {
+    public void detail(BoardDto dto, Model model, HttpServletRequest req) {
+        String lastIp = req.getHeader("X-FORWARDED-FOR");
+        if (lastIp == null) {
+            lastIp = req.getRemoteAddr();
+        }
+        System.out.println("lastIp : " + lastIp);
+        dto.setLastip(lastIp);
         model.addAttribute(Const.DATA, service.selBoard(dto));
     }
 
