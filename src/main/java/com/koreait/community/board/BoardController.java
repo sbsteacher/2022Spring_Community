@@ -35,5 +35,9 @@ public class BoardController {
         return "redirect:/board/list/" + entity.getIcategory();
     }
 
-    
+    @GetMapping("/detail")
+    public void detail(BoardDto dto, Model model) {
+        model.addAttribute(Const.DATA, service.selBoard(dto));
+    }
+
 }
