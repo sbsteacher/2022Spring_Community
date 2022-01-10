@@ -55,7 +55,7 @@
             </if>
         </set>
         WHERE iboard = ${iboard}
-        <if test="iuser > 0">
+        <if test=" lastip == null ">
             AND iuser = ${iuser}
         </if>
     </update>
