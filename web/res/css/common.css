@@ -5,6 +5,9 @@ html, body { height: 100%; }
 header { background-color: coral; }
 footer { background-color: #4d4d4d; }
 
+table, th, td { border: 1px solid #4f4f4f; border-collapse: collapse; }
+th, td { padding: 7px; }
+
 .flex-align-center { align-items: center; }
 .flex-center { justify-content: center; align-items: center; }
 .flex-container { display: flex; height: 100%; width: 100%; }
