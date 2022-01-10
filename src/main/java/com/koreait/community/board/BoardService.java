@@ -38,4 +38,10 @@ public class BoardService {
         }
         return detail;
     }
+
+    public int delBoard(BoardEntity entity) {  // icategory, iboard
+        entity.setIuser(userUtils.getLoginUserPk());
+        entity.setIsdel(1);
+        return mapper.updBoard(entity); // icategory, iboard, iuser, isdel
+    }
 }

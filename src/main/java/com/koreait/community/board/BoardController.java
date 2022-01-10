@@ -48,4 +48,10 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selBoard(dto));
     }
 
+    @GetMapping("/del")
+    public String delProc(BoardEntity entity) { // icategory, iboard
+        int result = service.delBoard(entity);
+        return "redirect:/board/list/" + entity.getIcategory();
+    }
+
 }

@@ -20,7 +20,7 @@
     </select>
 
     <select id="selBoard" resultType="BoardVo">
-        SELECT A.iboard, A.title, A.ctnt, A.iuser, A.hits, A.rdt, A.lastip
+        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.hits, A.rdt, A.lastip
              , B.nm as writernm, B.profileimg
              , C.nm as categorynm
         FROM t_board A
@@ -48,9 +48,15 @@
                 ctnt = #{ctnt},
             </if>
             <if test=" lastip != null and lastip != '' ">
-                lastip = #{lastip}
+                lastip = #{lastip},
+            </if>
+            <if test=" isdel == 1 ">
+                isdel = 1
             </if>
         </set>
         WHERE iboard = ${iboard}
+        <if test="iuser > 0">
+            AND iuser = ${iuser}
+        </if>
     </update>
 </mapper>
