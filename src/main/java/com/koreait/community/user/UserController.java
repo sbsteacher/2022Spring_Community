@@ -4,6 +4,7 @@ import com.koreait.community.Const;
 import com.koreait.community.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,7 +20,10 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/login")
-    public void login() {}
+    public void login(Model model) {
+        model.addAttribute("title", "로그인");
+        model.addAttribute("b_title", "b_로그인");
+    }
 
     @PostMapping("/login")
     public String loginProc(UserEntity entity, RedirectAttributes reAttr) {
