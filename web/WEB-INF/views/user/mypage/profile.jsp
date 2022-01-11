@@ -5,7 +5,8 @@
     <c:set var="profileImg" value="/res/img/user/${sessionScope.loginUser.iuser}/${sessionScope.loginUser.profileimg}" />
 </c:if>
 <div class="flex-container flex-direction-column flex-align-center">
-    <div class="circular--img circular--size300"><img src="${profileImg}"></div>
+    <div id="profile-view" class="pointer circular--img circular--size300"><img src="${profileImg}"></div>
+    <input type="file" id="profile-file" class="hidden" accept="image/*">
     <div>아이디: ${sessionScope.loginUser.uid}</div>
     <div>이름: ${sessionScope.loginUser.nm}</div>
     <div>성별: ${sessionScope.loginUser.gender == 1 ? '남성' : '여성'}</div>
