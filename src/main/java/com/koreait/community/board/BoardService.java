@@ -34,7 +34,6 @@ public class BoardService {
             if(hitsResult == 1) {
                 detail.setHits(detail.getHits() + 1);
             }
-            mapper.updBoard(dto);
         }
         return detail;
     }

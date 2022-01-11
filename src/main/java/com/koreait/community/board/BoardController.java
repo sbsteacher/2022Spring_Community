@@ -48,6 +48,12 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selBoard(dto));
     }
 
+    @GetMapping("/mod")
+    public String mod(BoardDto dto, Model model) {
+        model.addAttribute(Const.DATA, service.selBoard(dto));
+        return "board/write";
+    }
+
     @GetMapping("/del")
     public String delProc(BoardEntity entity) { // icategory, iboard
         int result = service.delBoard(entity);
