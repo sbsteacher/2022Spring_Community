@@ -4,7 +4,6 @@ import com.koreait.community.Const;
 import com.koreait.community.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -71,4 +70,7 @@ public class UserController {
         res.put("result", service.idChk(uid));
         return res;
     }
+
+    @GetMapping("/mypage/profile")
+    public void mypageProfile() {}
 }

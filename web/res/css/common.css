@@ -8,6 +8,9 @@ footer { background-color: #4d4d4d; }
 table, th, td { border: 1px solid #4f4f4f; border-collapse: collapse; }
 th, td { padding: 7px; }
 
+.submenu-section { display: grid; grid-template-columns: 100px 1fr; }
+.submenu-section:first-child { background-color: #efefef; }
+
 .flex-align-center { align-items: center; }
 .flex-center { justify-content: center; align-items: center; }
 .flex-container { display: flex; height: 100%; width: 100%; }
@@ -25,7 +28,7 @@ th, td { padding: 7px; }
 .m-r-10 { margin-right: 10px; }
 .m-r-20 { margin-right: 20px; }
 
-
+.p10 { padding: 10px; }
 .p-lr-10 { padding: 0 10px; }
 .p-lr-20 { padding: 0 20px; }
 
