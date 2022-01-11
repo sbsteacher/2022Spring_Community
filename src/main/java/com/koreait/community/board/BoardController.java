@@ -54,6 +54,12 @@ public class BoardController {
         return "board/write";
     }
 
+    @PostMapping("/mod")
+    public String modProc(BoardEntity entity) {
+        int result = service.updBoard(entity);
+        return "redirect:/board/detail?iboard=" + entity.getIboard();
+    }
+
     @GetMapping("/del")
     public String delProc(BoardEntity entity) { // icategory, iboard
         int result = service.delBoard(entity);

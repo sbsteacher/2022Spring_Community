@@ -29,13 +29,23 @@ public class BoardService {
     }
     public BoardVo selBoard(BoardDto dto) { //iboard, lastip
         BoardVo detail = mapper.selBoard(dto);
-        if(!Objects.equals(dto.getLastip(), detail.getLastip())) {
+        if(dto.getLastip() != null && !Objects.equals(dto.getLastip(), detail.getLastip())) {
             int hitsResult = mapper.addHits(dto);
             if(hitsResult == 1) {
                 detail.setHits(detail.getHits() + 1);
             }
         }
         return detail;
+    }
+
+    public int updBoard(BoardEntity entity) {
+        try {
+            entity.setIuser(userUtils.getLoginUserPk());
+            return mapper.updBoard(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 2;
+        }
     }
 
     public int delBoard(BoardEntity entity) {  // icategory, iboard
