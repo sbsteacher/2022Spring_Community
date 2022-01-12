@@ -1,4 +1,7 @@
 {
+    //Data Element
+    const dataElem = document.querySelector('#data');
+
     //input type="file"
     const profileFileElem = document.querySelector('#profile-file');
     if(profileFileElem) {
@@ -32,9 +35,26 @@
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            setProfileImg(data);
         })
         .catch(e => {
             console.log(e);
         });
+    }
+
+    //이미지 세팅
+    const setProfileImg = (data) => {
+        if(!data.result) { return; }
+
+        //프로필 이미지
+        const iuser = dataElem.dataset.iuser;
+        const src = `/images/user/${iuser}/${data.result}`;
+
+        const profileImgElem = profileViewElem.querySelector('img');
+        profileImgElem.src = src;
+
+        //헤더 이미지
+        const headerProfileImgElem = document.querySelector('#header-profileimg');
+        headerProfileImgElem.src = src;
     }
 }
