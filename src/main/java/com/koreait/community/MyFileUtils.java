@@ -56,7 +56,10 @@ public class MyFileUtils {
         File targetFile = new File(path, randomFileNm);
         try {
             mf.transferTo(targetFile);
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
         return randomFileNm;
     }
 }
