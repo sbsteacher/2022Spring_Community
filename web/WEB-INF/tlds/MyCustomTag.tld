@@ -6,7 +6,7 @@
     <description>MyCustomTag functions library</description>
     <display-name>MyCustomTag functions</display-name>
     <tlib-version>1.1</tlib-version>
-    <short-name>cutil</short-name>
+    <short-name>my</short-name>
     <uri>tld/MyCustomTag.tld</uri>
 
     <function>
