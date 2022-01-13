@@ -8,11 +8,13 @@ public class MyCustomJstlTag extends SimpleTagSupport {
     private String idVal;
     private String classVal;
     private int iuser;
+    private String imgIdVal;
     private String profileImgVal;
 
     public MyCustomJstlTag() {
         this.idVal = "";
         this.classVal = "";
+        this.imgIdVal = "";
     }
 
     public void setIdVal(String idVal) { this.idVal = idVal; }
@@ -22,6 +24,7 @@ public class MyCustomJstlTag extends SimpleTagSupport {
     public void setIuser(int iuser) {
         this.iuser = iuser;
     }
+    public void setImgIdVal(String imgIdVal) { this.imgIdVal = imgIdVal; }
     public void setProfileImgVal(String profileImgVal) {
         this.profileImgVal = profileImgVal;
     }
@@ -36,7 +39,7 @@ public class MyCustomJstlTag extends SimpleTagSupport {
             }
             */
             String fixProfileImgVal = profileImgVal == null ? "/res/img/defaultProfile.png" : String.format("/images/user/%s/%s", iuser, profileImgVal);
-            String result = String.format("<div id=\"%s\" class=\"%s\"><img src=\"%s\"></div>", idVal, classVal, fixProfileImgVal);
+            String result = String.format("<div id=\"%s\" class=\"%s\"><img src=\"%s\" id=\"%s\"></div>", idVal, classVal, fixProfileImgVal, imgIdVal);
 
             getJspContext().getOut().write(result);
         } catch (Exception e) {
