@@ -87,4 +87,7 @@ public class UserController {
         result.put("result", fileNm);
         return result;
     }
+
+    @GetMapping("/mypage/password")
+    public void password() {}
 }
