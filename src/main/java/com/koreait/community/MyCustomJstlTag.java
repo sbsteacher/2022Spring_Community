@@ -38,7 +38,7 @@ public class MyCustomJstlTag extends SimpleTagSupport {
                 fixProfileImgVal = String.format("/images/user/%s/%s", iuser, profileImgVal);
             }
             */
-            String fixProfileImgVal = profileImgVal == null ? "/res/img/defaultProfile.png" : String.format("/images/user/%s/%s", iuser, profileImgVal);
+            String fixProfileImgVal = "".equals(profileImgVal) ? "/res/img/defaultProfile.png" : String.format("/images/user/%s/%s", iuser, profileImgVal);
             String result = String.format("<div id=\"%s\" class=\"%s\"><img src=\"%s\" id=\"%s\"></div>", idVal, classVal, fixProfileImgVal, imgIdVal);
 
             getJspContext().getOut().write(result);
