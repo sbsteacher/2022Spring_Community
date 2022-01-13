@@ -1,6 +1,6 @@
 package com.koreait.community;
 
-import com.koreait.community.model.SubMenu;
+import com.koreait.community.model.SubMenuVo;
 import org.apache.tiles.Attribute;
 import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.ViewPreparer;
@@ -23,7 +23,11 @@ public class MenuPreparer implements ViewPreparer {
         attributeContext.putAttribute(Const.MENU_LIST,
                 new Attribute(mapper.selMenuCategoryList()), true);
 
-        List<SubMenu> subMenuList = new ArrayList<>();
+        List<SubMenuVo> subMenuList = new ArrayList<>();
+        subMenuList.add(new SubMenuVo("profile", "프로필"));
+        subMenuList.add(new SubMenuVo("changepw", "비밀번호 변경"));
 
+        attributeContext.putAttribute(Const.SUB_MENU_LIST,
+                new Attribute(subMenuList), true);
     }
 }
