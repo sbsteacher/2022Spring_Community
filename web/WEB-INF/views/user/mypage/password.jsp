@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <h1>비밀번호 변경</h1>
-    <form action="/user/mypage/password" method="post">
-        <div><label>현재 비밀번호 : <input type="password"></label></div>
-        <div><label>변경 비밀번호 : <input type="password"></label></div>
-        <div><label>확인 비밀번호 : <input type="password"></label></div>
+    <form action="/user/mypage/password" method="post" id="password-frm">
+        <div><label>현재 비밀번호 : <input type="password" name="currentupw"></label></div>
+        <div><label>변경 비밀번호 : <input type="password" name="upw"></label></div>
+        <div><label>확인 비밀번호 : <input type="password" id="confirmupw"></label></div>
         <div><input type="submit" value="변경"></div>
     </form>
 </div>
-<!-- 
+<!--
     현재, 변경, 확인 비밀번호에 내용이 작성되어 있는지 확인.
     변경, 확인 비밀번호가 같은 값인지 확인
     확인이 제대로 되었다면 send를 날린다. (현재, 변경)
