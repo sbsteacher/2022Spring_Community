@@ -3,8 +3,8 @@
 <div class="submenu-section">
     <div class="p-10">
         <ul>
-            <li><a href="">프로필</a></li>
-            <li><a href="">비밀번호변경</a></li>
+            <li><a href="/user/mypage/profile">프로필</a></li>
+            <li><a href="/user/mypage/changepw">비밀번호변경</a></li>
         </ul>
     </div>
     <div class="p-10">

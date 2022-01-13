@@ -1,5 +1,6 @@
 package com.koreait.community;
 
+import com.koreait.community.model.SubMenu;
 import org.apache.tiles.Attribute;
 import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.ViewPreparer;
@@ -21,5 +22,8 @@ public class MenuPreparer implements ViewPreparer {
         System.out.println(" ------- Called MenuPreparer-execute method --------- ");
         attributeContext.putAttribute(Const.MENU_LIST,
                 new Attribute(mapper.selMenuCategoryList()), true);
+
+        List<SubMenu> subMenuList = new ArrayList<>();
+
     }
 }
