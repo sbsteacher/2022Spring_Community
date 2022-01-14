@@ -23,3 +23,13 @@ const regex = {
         return (target && val) ? !this[target].test(val) : true;
     }
 };
+
+const myFetch = {
+    post: function(url, param) {
+        return fetch(url, {
+            'method': 'post',
+            'headers': { 'Content-Type': 'application/json' },
+            'body': JSON.stringify(param)
+        });
+    }
+}

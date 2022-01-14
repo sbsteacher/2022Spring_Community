@@ -37,14 +37,11 @@
         });
 
         const insBoardCmtAjax = (val) => {
-            fetch('/board/cmt', {
-                'method': 'post',
-                'headers': { 'Content-Type': 'application/json' },
-                'body': JSON.stringify({
-                    'iboard': dataElem.dataset.iboard,
-                    'ctnt': val
-                })
-            })
+            const param = {
+                'iboard': dataElem.dataset.iboard,
+                'ctnt': val
+            };
+            myFetch.post('/board/cmt', param)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
