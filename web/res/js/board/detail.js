@@ -41,13 +41,8 @@
                 'iboard': dataElem.dataset.iboard,
                 'ctnt': val
             };
-            myFetch.post('/board/cmt', param)
-            .then(res => res.json())
-            .then(data => {
+            myFetch.post('/board/cmt', param, (data) => {
                 console.log(data);
-            })
-            .catch(err => {
-                console.log(err);
             });
         }
     }

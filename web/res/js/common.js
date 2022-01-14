@@ -25,11 +25,14 @@ const regex = {
 };
 
 const myFetch = {
-    post: function(url, param) {
+    post: function(url, param, cb) {
         return fetch(url, {
             'method': 'post',
             'headers': { 'Content-Type': 'application/json' },
             'body': JSON.stringify(param)
-        });
+        })
+            .then(res => res.json())
+            .then(cb)
+            .catch(e => { console.log(e);});
     }
 }
