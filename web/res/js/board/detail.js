@@ -25,6 +25,12 @@
 
     const cmtFrmElem = document.querySelector('#cmtFrm');
     if(cmtFrmElem) { // true: 로그인 한 상태
+
+        //input-text ctnt에서 엔터치면 submit날아가기 때문에 막는다.
+        cmtFrmElem.addEventListener('submit', (e)=> {
+            e.preventDefault();
+        });
+
         cmtFrmElem.btn_submit.addEventListener('click', () => {
             const cmtVal = cmtFrmElem.ctnt.value;
             if(cmtVal.length === 0) {
@@ -41,9 +47,9 @@
                 'iboard': dataElem.dataset.iboard,
                 'ctnt': val
             };
-            myFetch.post('/board/cmt', param, (data) => {
+            myFetch.post('/board/cmt', (data) => {
                 console.log(data);
-            });
+            }, param);
         }
     }
 }

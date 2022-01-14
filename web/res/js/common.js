@@ -25,14 +25,24 @@ const regex = {
 };
 
 const myFetch = {
-    post: function(url, param, cb) {
-        return fetch(url, {
+    send: function(fetchObj, cb) {
+        return fetchObj
+            .then(res => res.json())
+            .then(cb)
+            .catch(e => { console.log(e) });
+    },
+    get: function(url, cb, param) {
+        if(param) {
+            const queryString = Object.keys(param).map(key => `${key}=${param[key]}`).join('&');
+            url = `${url}?${queryString}`;
+        }
+        return this.send(fetch(url), cb);
+    },
+    post: function(url, cb, param) {
+        return this.send(fetch(url, {
             'method': 'post',
             'headers': { 'Content-Type': 'application/json' },
             'body': JSON.stringify(param)
-        })
-            .then(res => res.json())
-            .then(cb)
-            .catch(e => { console.log(e);});
+        }), cb);
     }
 }
