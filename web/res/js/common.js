@@ -33,8 +33,8 @@ const myFetch = {
     },
     get: function(url, cb, param) {
         if(param) {
-            const queryString = Object.keys(param).map(key => `${key}=${param[key]}`).join('&');
-            url = `${url}?${queryString}`;
+            const queryString = '?' + Object.keys(param).map(key => `${key}=${param[key]}`).join('&');
+            url += queryString;
         }
         return this.send(fetch(url), cb);
     },
