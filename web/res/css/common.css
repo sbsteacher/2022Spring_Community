@@ -28,11 +28,14 @@ ul { list-style: none; }
 .h-100 { height: 100px; }
 .h-all { height: 100%; }
 .hidden { display: none; }
+.invisibility { visibility: hidden; }
 
 
 .m-r-5 { margin-right: 5px; }
 .m-r-10 { margin-right: 10px; }
 .m-r-20 { margin-right: 20px; }
+
+.m-t-20 { margin-top: 20px; }
 
 .menu-selected { font-weight: bold; }
 .menu-selected a { color: #fc0000; }
