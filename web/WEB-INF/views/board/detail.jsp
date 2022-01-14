@@ -23,7 +23,8 @@
     <c:if test="${sessionScope.loginUser != null}">
     <div class="m-t-20">
         <form id="cmtFrm">
-            <input type="text" name="cmt"><input type="button" value="댓글달기">
+            <input type="text" name="ctnt">
+            <input type="button" id="btn_submit" value="댓글달기">
         </form>
     </div>
     </c:if>
