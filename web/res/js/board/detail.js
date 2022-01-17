@@ -105,6 +105,12 @@
                 delBtn.type = 'button';
                 delBtn.value = '삭제';
 
+                delBtn.addEventListener('click', () => {
+                   if(confirm('삭제하시겠습니까?')) {
+                       delCmt(item.icmt, tr);
+                   }
+                });
+
                 td.appendChild(modBtn);
                 td.appendChild(delBtn);
             }
@@ -112,6 +118,17 @@
         });
         cmtListElem.appendChild(table);
     }
+
+    const delCmt = (icmt, tr) => {
+        myFetch.delete(`/board/cmt/${icmt}`, data => {
+            if(data.result) {
+                tr.remove();
+            } else {
+                alert('댓글을 삭제할 수 없습니다.');
+            }
+        });
+    }
+
     getCmtList();
 
 }
