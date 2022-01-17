@@ -28,5 +28,5 @@
         </form>
     </div>
     </c:if>
-    <div class="m-t-20">댓글 리스트</div>
+    <div class="m-t-20" id="cmt_list"></div>
 </div>

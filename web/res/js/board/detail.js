@@ -52,6 +52,51 @@
             }, param);
         }
     }
+
+    const cmtListElem = document.querySelector('#cmt_list');
+
+    //통신 시작!!!
+    const getCmtList = () => {
+        const iboard = dataElem.dataset.iboard;
+        myFetch.get(`/board/cmt/${iboard}`, (list) => {
+            console.log(list);
+            setCmtList(list);
+        });
+    }
+
+    //통신 결과물 세팅
+    const setCmtList = (list) => {
+        //댓글이 없으면 "댓글 없음"
+        if(list.length === 0) {
+            cmtListElem.innerText = '댓글 없음!';
+            return;
+        }
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+            <tr>
+                <th>no</th>
+                <th>content</th>
+                <th>writer</th>
+                <th></th>
+             </tr>
+        `;
+
+        list.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.icmt}</td>
+                <td>${item.ctnt}</td>
+                <td>${item.writernm}</td>
+            `;
+            const td = document.createElement('td');
+            tr.appendChild(td);
+            table.appendChild(tr);
+        });
+        cmtListElem.appendChild(table);
+    }
+    getCmtList();
+
 }
 
 // Restful API > POST, GET, PUT, DELETE
