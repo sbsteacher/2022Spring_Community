@@ -54,14 +54,10 @@
     }
 
     const cmtListElem = document.querySelector('#cmt_list');
-
     //통신 시작!!!
     const getCmtList = () => {
         const iboard = dataElem.dataset.iboard;
-        myFetch.get(`/board/cmt/${iboard}`, (list) => {
-            console.log(list);
-            setCmtList(list);
-        });
+        myFetch.get(`/board/cmt/${iboard}`, setCmtList);
     }
 
     //통신 결과물 세팅
@@ -79,18 +75,39 @@
                 <th>content</th>
                 <th>writer</th>
                 <th></th>
-             </tr>
-        `;
-
+            </tr>`;
         list.forEach(item => {
             const tr = document.createElement('tr');
+
+            const imgSrc = item.profileimg === null
+                ? '/res/img/defaultProfile.png'
+                : `/images/user/${item.iuser}/${item.profileimg}`;
+
             tr.innerHTML = `
                 <td>${item.icmt}</td>
                 <td>${item.ctnt}</td>
-                <td>${item.writernm}</td>
+                <td>
+                    <span>${item.writernm}</span>
+                    <div class="circular--img wh-30">
+                        <img src="${imgSrc}" onerror="this.style.display='none';">
+                    </div>
+                </td>
             `;
             const td = document.createElement('td');
             tr.appendChild(td);
+
+            if(parseInt(dataElem.dataset.iuser) === item.iuser) {
+                const modBtn = document.createElement('input');
+                modBtn.type = 'button';
+                modBtn.value = '수정';
+
+                const delBtn = document.createElement('input');
+                delBtn.type = 'button';
+                delBtn.value = '삭제';
+
+                td.appendChild(modBtn);
+                td.appendChild(delBtn);
+            }
             table.appendChild(tr);
         });
         cmtListElem.appendChild(table);
