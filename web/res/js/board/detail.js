@@ -1,7 +1,7 @@
 {
     const dataElem = document.querySelector('#data');
 
-    //삭제 버튼
+    //글 삭제 버튼
     const delBtnElem = document.querySelector('#delBtn');
     if(delBtnElem) {
         delBtnElem.addEventListener('click', ()=> {
@@ -14,7 +14,7 @@
         });
     }
 
-    //수정 버튼
+    //글 수정 버튼
     const modBtnElem = document.querySelector('#modBtn');
     if(modBtnElem) {
         modBtnElem.addEventListener('click', ()=> {
@@ -57,8 +57,8 @@
                         //기존 table태그가 있는지 확인
                         const cmtListElem = document.querySelector('#cmt_list');
                         let table = cmtListElem.querySelector('table');
-                        if(!table) {
-                            cmtListElem.innerHTML = null;
+                        if(!table) { //없으면 table 생성!
+                            cmtListElem.innerHTML = null; //댓글 없음 내용 삭제!
                             table = makeTable();
                             cmtListElem.appendChild(table);
                         }
@@ -157,18 +157,30 @@
         return tr;
     }
 
+    //댓글 삭제
     const delCmt = (icmt, tr) => {
         myFetch.delete(`/board/cmt/${icmt}`, data => {
             if(data.result) {
                 tr.remove();
+
+                //만약 댓글이 하나도 없다면
+                if(getTrLen() === 1) {
+                    const cmtListElem = document.querySelector('#cmt_list');
+                    cmtListElem.innerText = '댓글 없음!';
+                }
+
             } else {
                 alert('댓글을 삭제할 수 없습니다.');
             }
         });
     }
-
     getCmtList();
+}
 
+const getTrLen = () => {
+    const cmtListElem = document.querySelector('#cmt_list');
+    const trArr = cmtListElem.querySelectorAll('table tr');
+    return trArr.length;
 }
 
 // Restful API > POST, GET, PUT, DELETE
