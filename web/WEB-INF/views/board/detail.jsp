@@ -10,7 +10,9 @@
     <div id="data"
          data-icategory="${data.icategory}"
          data-iboard="${data.iboard}"
-         data-iuser="${sessionScope.loginUser.iuser}"></div>
+         data-nm="${sessionScope.loginUser.nm}"
+         data-iuser="${sessionScope.loginUser.iuser}"
+         data-profileimg="${sessionScope.loginUser.profileimg}"></div>
     <div>
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button>이전글</button></a>
         <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button>다음글</button></a>

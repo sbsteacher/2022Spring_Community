@@ -54,9 +54,25 @@
                         alert('댓글 등록에 실패하였습니다.');
                         break;
                     default:
+                        //기존 table태그가 있는지 확인
+                        const cmtListElem = document.querySelector('#cmt_list');
+                        let table = cmtListElem.querySelector('table');
+                        if(!table) {
+                            cmtListElem.innerHTML = null;
+                            table = makeTable();
+                            cmtListElem.appendChild(table);
+                        }
+                        const item = {
+                            icmt: data.result,
+                            iuser: parseInt(dataElem.dataset.iuser),
+                            writernm: dataElem.dataset.nm,
+                            profileimg: dataElem.dataset.profileimg,
+                            ctnt: cmtFrmElem.ctnt.value,
+                        }
+                        const tr = makeTr(item);
+                        table.appendChild(tr);
+
                         cmtFrmElem.ctnt.value = null;
-
-
                         break;
                 }
             }, param);
