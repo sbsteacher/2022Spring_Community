@@ -161,7 +161,7 @@
                                 break;
                             case 1:
                                 tdCell.innerText = modInput.value;
-                                //item.ctnt = modInput.value;
+                                item.ctnt = modInput.value;
                                 removeCancelBtn();
                                 break;
                         }
@@ -169,7 +169,7 @@
                 });
 
                 tdCell.innerHTML = null;
-                tdCell.appendChild(input);
+                tdCell.appendChild(modInput);
                 tdCell.appendChild(saveBtn);
 
                 const cancelBtn = document.createElement('input');
