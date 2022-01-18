@@ -144,11 +144,28 @@
                 const tdArr = tr.querySelectorAll('td');
                 const tdCell = tdArr[1];
 
-                const input = document.createElement('input');
-                input.value = item.ctnt;
+                const modInput = document.createElement('input');
+                modInput.value = item.ctnt;
                 const saveBtn = document.createElement('input')
                 saveBtn.type = 'button';
                 saveBtn.value = '저장';
+                saveBtn.addEventListener('click', () => {
+                    const param = {
+                        icmt: item.icmt,
+                        ctnt: modInput.value
+                    }
+                    myFetch.put('/board/cmt', data => {
+                        switch(data.result) {
+                            case 0:
+                                alert('댓글 수정에 실패하였습니다.')
+                                break;
+                            case 1:
+                                item.ctnt = modInput.value;
+                                removeCancel();
+                                break;
+                        }
+                    }, param);
+                });
 
                 tdCell.innerHTML = null;
                 tdCell.appendChild(input);
@@ -159,10 +176,14 @@
                 cancelBtn.value = '취소';
                 cancelBtn.addEventListener('click', () => {
                     tdCell.innerText = item.ctnt;
+                    removeCancel();
+                });
+
+                const removeCancel = () => {
                     modBtn.classList.remove('hidden');
                     delBtn.classList.remove('hidden');
                     cancelBtn.remove();
-                });
+                }
 
                 td.insertBefore(cancelBtn, modBtn);
                 modBtn.classList.add('hidden');
