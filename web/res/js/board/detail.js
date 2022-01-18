@@ -37,7 +37,7 @@
                 alert('댓글 내용을 작성해 주세요.');
             } else if(regex.isWrongWith('ctnt', cmtVal)) {
                 alert(regex.msg.ctnt);
-            } else {
+            } else { //댓글 insert 시도
                 insBoardCmtAjax(cmtVal);
             }
         });
@@ -48,7 +48,17 @@
                 'ctnt': val
             };
             myFetch.post('/board/cmt', (data) => {
-                console.log(data);
+                console.log('result : ' + data.result);
+                switch(data.result) {
+                    case 0:
+                        alert('댓글 등록에 실패하였습니다.');
+                        break;
+                    default:
+                        cmtFrmElem.ctnt.value = null;
+
+
+                        break;
+                }
             }, param);
         }
     }
@@ -77,13 +87,19 @@
                 <th></th>
             </tr>`;
         list.forEach(item => {
-            const tr = document.createElement('tr');
+            makeTr(table, item);
+        });
+        cmtListElem.appendChild(table);
+    }
 
-            const imgSrc = item.profileimg === null
-                ? '/res/img/defaultProfile.png'
-                : `/images/user/${item.iuser}/${item.profileimg}`;
+    const makeTr = (table, item) => {
+        const tr = document.createElement('tr');
 
-            tr.innerHTML = `
+        const imgSrc = item.profileimg === null
+            ? '/res/img/defaultProfile.png'
+            : `/images/user/${item.iuser}/${item.profileimg}`;
+
+        tr.innerHTML = `
                 <td>${item.icmt}</td>
                 <td>${item.ctnt}</td>
                 <td>
@@ -93,30 +109,28 @@
                     </div>
                 </td>
             `;
-            const td = document.createElement('td');
-            tr.appendChild(td);
+        const td = document.createElement('td');
+        tr.appendChild(td);
 
-            if(parseInt(dataElem.dataset.iuser) === item.iuser) {
-                const modBtn = document.createElement('input');
-                modBtn.type = 'button';
-                modBtn.value = '수정';
+        if(parseInt(dataElem.dataset.iuser) === item.iuser) {
+            const modBtn = document.createElement('input');
+            modBtn.type = 'button';
+            modBtn.value = '수정';
 
-                const delBtn = document.createElement('input');
-                delBtn.type = 'button';
-                delBtn.value = '삭제';
+            const delBtn = document.createElement('input');
+            delBtn.type = 'button';
+            delBtn.value = '삭제';
 
-                delBtn.addEventListener('click', () => {
-                   if(confirm('삭제하시겠습니까?')) {
-                       delCmt(item.icmt, tr);
-                   }
-                });
+            delBtn.addEventListener('click', () => {
+                if(confirm('삭제하시겠습니까?')) {
+                    delCmt(item.icmt, tr);
+                }
+            });
 
-                td.appendChild(modBtn);
-                td.appendChild(delBtn);
-            }
-            table.appendChild(tr);
-        });
-        cmtListElem.appendChild(table);
+            td.appendChild(modBtn);
+            td.appendChild(delBtn);
+        }
+        table.appendChild(tr);
     }
 
     const delCmt = (icmt, tr) => {
