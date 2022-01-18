@@ -160,8 +160,9 @@
                                 alert('댓글 수정에 실패하였습니다.')
                                 break;
                             case 1:
-                                item.ctnt = modInput.value;
-                                removeCancel();
+                                tdCell.innerText = modInput.value;
+                                //item.ctnt = modInput.value;
+                                removeCancelBtn();
                                 break;
                         }
                     }, param);
@@ -176,10 +177,10 @@
                 cancelBtn.value = '취소';
                 cancelBtn.addEventListener('click', () => {
                     tdCell.innerText = item.ctnt;
-                    removeCancel();
+                    removeCancelBtn();
                 });
 
-                const removeCancel = () => {
+                const removeCancelBtn = () => {
                     modBtn.classList.remove('hidden');
                     delBtn.classList.remove('hidden');
                     cancelBtn.remove();
