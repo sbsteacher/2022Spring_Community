@@ -140,6 +140,34 @@
             const modBtn = document.createElement('input');
             modBtn.type = 'button';
             modBtn.value = '수정';
+            modBtn.addEventListener('click', () => {
+                const tdArr = tr.querySelectorAll('td');
+                const tdCell = tdArr[1];
+
+                const input = document.createElement('input');
+                input.value = item.ctnt;
+                const saveBtn = document.createElement('input')
+                saveBtn.type = 'button';
+                saveBtn.value = '저장';
+
+                tdCell.innerHTML = null;
+                tdCell.appendChild(input);
+                tdCell.appendChild(saveBtn);
+
+                const cancelBtn = document.createElement('input');
+                cancelBtn.type = 'button';
+                cancelBtn.value = '취소';
+                cancelBtn.addEventListener('click', () => {
+                    tdCell.innerText = item.ctnt;
+                    modBtn.classList.remove('hidden');
+                    delBtn.classList.remove('hidden');
+                    cancelBtn.remove();
+                });
+
+                td.insertBefore(cancelBtn, modBtn);
+                modBtn.classList.add('hidden');
+                delBtn.classList.add('hidden');
+            });
 
             const delBtn = document.createElement('input');
             delBtn.type = 'button';
@@ -168,7 +196,6 @@
                     const cmtListElem = document.querySelector('#cmt_list');
                     cmtListElem.innerText = '댓글 없음!';
                 }
-
             } else {
                 alert('댓글을 삭제할 수 없습니다.');
             }
