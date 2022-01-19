@@ -49,7 +49,7 @@
             };
             myFetch.post('/board/cmt', (data) => {
                 console.log('result : ' + data.result);
-                switch(data.result) {
+                switch(data.result) { //data.result에 icmt값이 넘어온다.
                     case 0:
                         alert('댓글 등록에 실패하였습니다.');
                         break;
