@@ -73,6 +73,8 @@
                         table.appendChild(tr);
 
                         cmtFrmElem.ctnt.value = null;
+                        //document.body.scrollTop = document.body.scrollHeight; //작동 안 됨!
+                        window.scrollTo(0, document.body.scrollHeight);
                         break;
                 }
             }, param);
