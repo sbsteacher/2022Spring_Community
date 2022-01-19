@@ -234,11 +234,34 @@
     getCmtList();
 
     //좋아요 ------------------------------------------------------------ [start] --
+    const favIconElem = document.querySelector('#fav_icon');
+
     const isFav = () => {
         const iboard = dataElem.dataset.iboard;
         myFetch.get(`/board/fav/${iboard}`, (data) => {
-            console.log(data.result);
+            switch(data.result) {
+                case 0:
+                    disableFav();
+                    break;
+                case 1:
+                    enableFav();
+                    break;
+            }
         });
+    }
+
+    const disableFav = () => {
+        if(favIconElem) {
+            favIconElem.classList.remove('fas');
+            favIconElem.classList.add('far');
+        }
+    }
+
+    const enableFav = () => {
+        if(favIconElem) {
+            favIconElem.classList.remove('far');
+            favIconElem.classList.add('fas');
+        }
     }
 
     if(dataElem.dataset.iuser) {
