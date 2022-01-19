@@ -225,13 +225,28 @@
             }
         });
     }
+
+    const getTrLen = () => {
+        const cmtListElem = document.querySelector('#cmt_list');
+        const trArr = cmtListElem.querySelectorAll('table tr');
+        return trArr.length;
+    }
     getCmtList();
+
+    //좋아요 ------------------------------------------------------------ [start] --
+    const isFav = () => {
+        const iboard = dataElem.dataset.iboard;
+        myFetch.get(`/board/fav/${iboard}`, (data) => {
+            console.log(data.result);
+        });
+    }
+
+    if(dataElem.dataset.iuser) {
+        isFav();
+    }
+    //좋아요 ------------------------------------------------------------ [end] --
 }
 
-const getTrLen = () => {
-    const cmtListElem = document.querySelector('#cmt_list');
-    const trArr = cmtListElem.querySelectorAll('table tr');
-    return trArr.length;
-}
+
 
 // Restful API > POST, GET, PUT, DELETE
